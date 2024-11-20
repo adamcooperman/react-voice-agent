@@ -1,4 +1,7 @@
 import uvicorn
+
+from dotenv import load_dotenv
+import os
 from starlette.applications import Starlette
 from starlette.responses import HTMLResponse
 from starlette.routing import Route, WebSocketRoute
@@ -8,10 +11,12 @@ from starlette.websockets import WebSocket
 from langchain_openai_voice import OpenAIVoiceReactAgent
 
 
+
 from server.utils import websocket_stream
 from server.prompt import INSTRUCTIONS
 from server.tools import TOOLS
 
+load_dotenv()
 
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
